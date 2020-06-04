@@ -1,0 +1,93 @@
+
+type Order {
+    id: ID!
+    address: String
+    comment: String
+    name: String
+    delivery: Boolean
+    phone: String
+    orderItems: [OrderItem!] @hasMany
+ }
+
+type OrderItem {
+    id: ID!
+    quantity: Int!
+    order: Order @belongsTo(relation: "order")
+    product: Product @belongsTo(relation: "product")
+}
+
+type Product {
+    id: ID!
+    name: String!
+    description: String!
+    priceE: Float!
+    imageUrl: String
+    orderItems: [OrderItem!] @hasMany
+}
+
+type Query {
+    order(id: ID! @eq): Order @find
+    orders: [Order!]! @paginate
+    orderItem: [OrderItem!]! @all
+    products: [Product!]! @all
+}
+
+type PaginatorInfo {
+    count: Int!
+    currentPage: Int!
+    firstItem: Int
+    hasMorePages: Boolean!
+    lastItem: Int
+    lastPage: Int!
+    perPage: Int!
+    total: Int!
+}
+
+type Mutation {
+    createOrder(input: CreateOrderInput): Order @create(flatten: true)
+    updateOrder(input: UpdateOrderInput): Order @update(flatten: true)
+    createOrderItem(input: CreateOrderItemInput!): OrderItem @create(flatten: true)
+    deleteOrderItem(id: ID!): OrderItem @delete
+}
+
+input CreateOrderInput {
+    address: String
+    comment: String
+    name: String
+    delivery: Boolean
+    phone: String
+    orderItems: [CreateOrderItemRelation!]
+}
+
+input UpdateOrderInput {
+    id: ID!
+    address: String
+    comment: String
+    name: String
+    delivery: Boolean
+    phone: String
+    orderItems: [CreateOrderItemRelation!]
+}
+
+input CreateOrderItemRelation {
+    connect: ID!
+    create: CreateOrderItemInput!
+}
+
+input CreateOrderItemInput {
+    quantity: Int!
+    product: CreateProductRelation!
+    order: CreateOrderRelation!
+}
+
+input CreateOrderRelation {
+    connect: ID!
+}
+
+input CreateProductRelation {
+    connect: ID!
+}
+
+
+
+
