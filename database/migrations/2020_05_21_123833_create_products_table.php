@@ -18,10 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->float('priceE');
-            $table->unsignedBigInteger('orderItem_id')->nullable();
             $table->string('imageUrl')->nullable();
             $table->timestamps();
-            $table->foreign('orderItem_id')->references('id')->on('order_items');
         });
     }
 
