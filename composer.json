@@ -29,10 +29,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-                "jakub-onderka/php-console-color",
-                "jakub-onderka/php-console-highlighter"
-            ]
+            "dont-discover": []
         }
     },
     "autoload": {
@@ -40,8 +37,7 @@
             "App\\": "app/"
         },
         "classmap": [
-            "database/seeds",
-            "database/factories"
+            "database/seeds"
         ]
     },
     "autoload-dev": {
