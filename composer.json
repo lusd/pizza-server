@@ -29,7 +29,10 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "jakub-onderka/php-console-color",
+                "jakub-onderka/php-console-highlighter"
+            ]
         }
     },
     "autoload": {
