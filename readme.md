@@ -8,12 +8,15 @@
 </p>
 
 To initial app after installation start with migrating:
+
 $php artisan migrate
 
 Fill Products table
+
 $php artisan db:seed
 
 And finally start server
+
 $php artisan serve
 
 ## About Laravel
